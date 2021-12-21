@@ -1,0 +1,36 @@
+:root {
+    --star-gradient: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 100) 35%);
+    --star-ray-gradient: radial-gradient(circle, rgba(153, 171, 250, 0.6) 0%, rgba(0, 0, 0, 100) 100%);
+}
+:global(.sky) {
+    background-color: var(--bg-color-base);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+:global(.star) {
+    z-index: inherit;
+    margin: auto;
+    position: absolute;
+    border-radius: 50%;
+    background: var(--star-gradient);
+}
+
+:global(.star::before) {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: var(--star-ray-gradient);
+    position: absolute;
+    top: 50%;
+    transform: rotate(90deg);
+}
+:global(.star:after) {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: var(--star-ray-gradient);
+    position: absolute;
+    top: 50%;
+}
