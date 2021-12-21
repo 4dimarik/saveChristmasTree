@@ -8,8 +8,8 @@ export default class Modal {
   }
   create() {
     this.#modal = document.createElement("div");
+    this.#modal.className = "sct-card";
     this.#modal.innerHTML = `
-        <div class="sct-card">
           <div class="sct-card__header"></div>
           <div class="sct-card__body">
             <h5 class="sct-card__title">Special title treatment</h5>
@@ -18,8 +18,7 @@ export default class Modal {
             </p>
             <a href="#" class="btn btn-primary">Button</a>
           </div>
-          <div class="sct-card__footer">2 days ago</div>
-        </div>
+          <div class="sct-card__footer"></div>
         `;
   }
   insert(selector) {
@@ -27,6 +26,7 @@ export default class Modal {
   }
   toggle(selector) {
     this.#isActive = !this.#isActive;
-    this.#isActive ? this.#modal.remove() : this.insert(selector);
+    console.log(this.#isActive);
+    this.#isActive ? this.insert(selector) : this.#modal.remove();
   }
 }
