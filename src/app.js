@@ -5,6 +5,7 @@ import Modal from "./modules/modal.module";
 import Snow from "./modules/snow.module";
 import "./styles.css";
 import "./style.scss";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const snow = new Snow();
 

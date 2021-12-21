@@ -14,9 +14,13 @@ export default class Modal {
           <div class="sct-card__body">
             <h5 class="sct-card__title">Special title treatment</h5>
             <p class="sct-card__text">
-              With supporting text below as a natural lead-in to additional content.
+              
             </p>
-            <a href="#" class="btn btn-primary">Button</a>
+            <div class="sct-card__close-btn"> 
+              <a class="m-1" style="color: #000;" href="#!" role="button">
+                  <i class="far fa-times-circle"></i>
+              </a>
+            </div>
           </div>
           <div class="sct-card__footer"></div>
         `;
