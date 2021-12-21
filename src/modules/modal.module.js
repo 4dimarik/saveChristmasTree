@@ -1,36 +1,34 @@
 import "./modal.css";
 export default class Modal {
-  #id;
-  #modal;
   #isActive = false;
-  constructor(id) {
-    this.create();
+  constructor() {
+    this.modal = null;
   }
   create() {
-    this.#modal = document.createElement("div");
-    this.#modal.className = "sct-card";
-    this.#modal.innerHTML = `
+    this.modal = document.createElement("div");
+    this.modal.className = "sct-card";
+    this.modal.innerHTML = `
           <div class="sct-card__header"></div>
           <div class="sct-card__body">
-            <h5 class="sct-card__title">Special title treatment</h5>
-            <p class="sct-card__text">
-              
-            </p>
-            <div class="sct-card__close-btn"> 
+<!--            <h5 class="sct-card__title">Special title treatment</h5>-->
+<!--            <p class="sct-card__text">-->
+<!--              -->
+<!--            </p>-->
+<!--            <div class="sct-card__close-btn"> -->
+                <div class="sct-card__content"></div>
               <a class="m-1" style="color: #000;" href="#!" role="button">
-                  <i class="far fa-times-circle"></i>
+                  <i class="far fa-times-circle" data-btn="close_modal" data-module=""></i>
               </a>
             </div>
           </div>
           <div class="sct-card__footer"></div>
         `;
   }
-  insert(selector) {
-    document.querySelector(selector).append(this.#modal);
+  insert() {
+    document.querySelector(".modal_area").append(this.modal);
   }
-  toggle(selector) {
+  toggle() {
     this.#isActive = !this.#isActive;
-    console.log(this.#isActive);
-    this.#isActive ? this.insert(selector) : this.#modal.remove();
+    this.#isActive ? this.insert(".modal_area") : this.modal.remove();
   }
 }

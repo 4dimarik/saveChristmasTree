@@ -2,45 +2,66 @@ import StarSky from "./modules/star_sky.module";
 import ChristmasTree from "./modules/christmas_tree.module";
 import SvgBall from "./modules/ball.module";
 import Modal from "./modules/modal.module";
+import Music from "./modules/music.mudule";
 import Snow from "./modules/snow.module";
 import "./styles.css";
 import "./style.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const snow = new Snow();
+// const snow = new Snow();
 
-const modal = new Modal();
+// const modal = new Modal();
 
-document.addEventListener("DOMContentLoaded", () => {});
-const starSky = new StarSky(".sky", 20, 200);
+let modules = {
+  starSky: new StarSky(".sky", 20, 200),
+  snow: new Snow(),
+  music: new Music(),
+};
+
 window.onload = () => {
-  starSky.create().insert();
+  modules.starSky.create().insert();
+  modules = {
+    ...modules,
+    christmasTree: document.querySelector("svg-christmas-tree"),
+  };
 };
 
 window.onresize = () => {
-  starSky.create().insert();
+  modules.starSky.create().insert();
 };
 
 document.querySelector("body").addEventListener("click", (event) => {
-  //console.dir(event.target);
+  const { target } = event;
+  if (target.dataset.btn === "close_modal") {
+    //event.target.closest(".sct-card").remove();
+    modules[target.dataset.module].toggle();
+  }
+  console.dir(event.target);
+  console.log(event.target.closest(".sct-card"));
 });
 
 document.querySelector(".tree").addEventListener("click", (event) => {
   event.preventDefault();
   const { target } = event;
   const { parentElement } = target;
-  console.log(target);
-  console.log(target.localName, target.id);
+  const { module: moduleName } = target.dataset;
+
+  console.dir(modules[moduleName]);
+
   if (target.localName === "svg-ball") {
     target.toggleClass("selected");
-    target.parentElement.classList.toggle("ball-shadow");
-    console.log(parentElement.id);
-    if (parentElement.id === "btn_tree_light") {
-      document.querySelector("svg-christmas-tree").toggleLight();
-    } else if (parentElement.id === "btn_ball_snow") {
-      snow.toggle();
-    } else if (parentElement.id === "btn_ball_fwr") {
-      modal.toggle(".modal_area");
-    }
+    parentElement.classList.toggle("ball-shadow");
+
+    console.dir(modules[moduleName]);
+
+    modules[moduleName].toggle();
+
+    // if (parentElement.id === "btn_tree_light") {
+    //   document.querySelector("svg-christmas-tree").toggleLight();
+    // } else if (parentElement.id === "btn_ball_snow") {
+    //   snow.toggle();
+    // } else if (parentElement.id === "btn_ball_fwr") {
+    //   modal.toggle(".modal_area");
+    // }
   }
 });

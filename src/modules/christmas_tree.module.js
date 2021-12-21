@@ -93,12 +93,13 @@ export default class ChristmasTree extends HTMLElement {
      </svg>
     `;
   }
-  toggleLight() {
+  toggle() {
     this.#colorChanged = !this.#colorChanged;
     this.changeCircleColor(this.#colorChanged);
     this.shadowRoot.querySelector("#layer2").classList.toggle("light-off");
   }
   changeCircleColor(on) {
+    console.log("on", on);
     const allCircles = this.shadowRoot.querySelectorAll(".cls-8");
     if (on) {
       allCircles.forEach((circle) => {
