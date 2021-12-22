@@ -6,11 +6,11 @@
     background-color: var(--bg-color-base);
     width: 100vw;
     height: 100vh;
-    position: absolute;
+
 }
 
 :global(.star) {
-    z-index: inherit;
+    /*z-index: inherit;*/
     margin: auto;
     position: absolute;
     border-radius: 50%;

@@ -32,12 +32,34 @@ a {
 [role=button] {
     cursor: pointer;
 }
+.btn {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    background-color: transparent;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 1.5;
+    border-width: .125rem;
+    border-style: solid;
+    box-shadow: none;
+    padding: .5rem 1.375rem .375rem;
+    color: #39c0ed;
+    border-color: #39c0ed;
+    cursor: pointer;
+}
 .sky{
     z-index: 10;
+    position: absolute;
 }
-
 .street{
     z-index: 20;
+    position: absolute;
     height: 100%;
     width: 100%;
     min-height: 300px;
@@ -48,8 +70,6 @@ a {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
-    position: absolute;
 }
 .street-item{
     flex: 0 2 auto;
@@ -86,6 +106,13 @@ a {
     top: 40%;
     left: 40%;
 }
+.ball-music {
+    top: 55%;
+    left: 25%;
+}
+
+
+
 
 .snow {
     top: 0;

@@ -4,7 +4,7 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     font-family: var(--sct-font-roboto);
     line-height: 1.6;
-    color: white;
+    color: #4f4f4f;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,7 @@
     font-size: 2rem;
     height: 2.5rem;
 
-    /*padding-bottom: 1rem;*/
+        /*padding-bottom: 1rem;*/
     /*background: url("../assets/img/modal-footer.svg"), var(--sct-modal-bg-color) center center;*/
     /*background-repeat: no-repeat;*/
     /*background-position: center bottom;*/

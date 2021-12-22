@@ -1,59 +1,80 @@
-export default class followWhiteRabbitModule {
+import Modal from "./modal.module";
+import "./follow_white_rabbit.css";
+
+export default class FollowWhiteRabbitModule extends Modal {
   #SQUARES_NUMBER = 400;
   #COLORS_NUMBER = 50;
-  constructor({ boardSelector = "#board", spanCounterSelector = "#counter" }) {
+
+  constructor() {
+    super();
     this.colors = this.getRandomColorArray();
-    this.board = document.querySelector(boardSelector);
-    this.spanCounter = document.querySelector(spanCounterSelector);
+    this.create();
+    this.spanCounter = document.querySelector("#counter");
+    this.addContent();
   }
-  start() {
+  addContent() {
+    this.modal.querySelector(".sct-card__content").insertAdjacentHTML(
+      "afterbegin",
+      `<div class="sct-card__fwr-panel">
+<p class="sct-card__text">Кликай по полю ниже, что бы найти где спрятался белый кролик</p>
+<button type="button" class="btn" >Старт</button>
+</div>`
+    );
+
+    this.square = document.createElement("div");
+    this.square.classList.add("sct-card__fwr-container");
+
     for (let i = 0; i < this.#SQUARES_NUMBER; i++) {
-      const square = document.createElement("div");
-      square.classList.add("square");
-
-      square.addEventListener("mouseover", (event) => {
-        this.setColor(square);
-      });
-      square.addEventListener("mouseleave", () => {
-        this.removeColor(square);
-      });
-
-      this.board.append(square);
+      const box = document.createElement("div");
+      box.classList.add("box");
+      box.dataset.id = String(i);
+      this.square.append(box);
     }
 
-    let miniGame = {
-      whiteDivIndex: setWhiteDiv(),
-      counter: 0,
-      lastClickIndex: null,
-      win: false,
-    };
+    this.miniGame = this.createMiniGame();
 
-    const squares = document.querySelectorAll(".square");
-    squares.forEach((square) => {
-      square.addEventListener("click", (event) => {
-        let index = Array.from(squares).indexOf(event.target);
+    this.square.addEventListener("mouseover", (event) => {
+      const { target } = event;
+      if ([...target.classList].includes("box")) {
+        this.setColor(target);
+      }
+    });
+    this.square.addEventListener("mouseout", (event) => {
+      const { target } = event;
+      if ([...target.classList].includes("box")) {
+        this.removeColor(target);
+      }
+    });
 
+    const boxes = this.square.querySelectorAll("box");
+    this.square.addEventListener("click", (event) => {
+      const { target } = event;
+      if ([...target.classList].includes("box")) {
+        //let index = Array.from(boxes).indexOf(target);
+        const index = +target.dataset.id;
         console.log(`Click index: ${index}`);
-        if (!miniGame.win) {
-          miniGame.counter++;
-          spanCounter.textContent = miniGame.counter;
-          if (miniGame.whiteDivIndex === index) {
-            event.target.classList.add("white-div");
-            spanCounter.style.color = "red";
-            miniGame.win = true;
+
+        if (!this.miniGame.win) {
+          this.miniGame.counter++;
+          this.miniGame.textContent = this.miniGame.counter;
+          if (this.miniGame.whiteDivIndex === index) {
+            target.classList.add("white-div");
+            this.spanCounter.style.color = "red";
+            this.miniGame.win = true;
           }
-          miniGame.lastClickIndex = index;
+          this.miniGame.lastClickIndex = index;
         } else {
-          if (miniGame.lastClickIndex === index) {
+          if (this.miniGame.lastClickIndex === index) {
             event.target.classList.remove("white-div");
-            miniGame.counter = 0;
-            spanCounter.textContent = 0;
-            spanCounter.style.color = "";
-            miniGame.win = false;
+            this.miniGame.counter = 0;
+            this.spanCounter.textContent = 0;
+            this.spanCounter.style.color = "";
+            this.miniGame.win = false;
           }
         }
-      });
+      }
     });
+    this.modal.querySelector(".sct-card__content").append(this.square);
   }
   setColor(el) {
     const color = this.getRandomColor();
@@ -83,8 +104,16 @@ export default class followWhiteRabbitModule {
     }
     return colors;
   }
+  createMiniGame() {
+    return {
+      whiteDivIndex: this.setWhiteDiv(),
+      counter: 0,
+      lastClickIndex: null,
+      win: false,
+    };
+  }
   setWhiteDiv() {
-    const divCount = document.querySelectorAll(".container div").length; //?
+    const divCount = this.square.querySelectorAll(".box").length;
     const index = Math.floor(Math.random() * divCount);
     console.log(`White div index: ${index}`);
     return index;

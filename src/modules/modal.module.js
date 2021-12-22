@@ -1,4 +1,5 @@
 import "./modal.css";
+
 export default class Modal {
   #isActive = false;
   constructor() {
@@ -16,7 +17,7 @@ export default class Modal {
 <!--            </p>-->
 <!--            <div class="sct-card__close-btn"> -->
                 <div class="sct-card__content"></div>
-              <a class="m-1" style="color: #000;" href="#!" role="button">
+              <a class="fa-lg" style="color: #fff;" href="#!" role="button">
                   <i class="far fa-times-circle" data-btn="close_modal" data-module=""></i>
               </a>
             </div>

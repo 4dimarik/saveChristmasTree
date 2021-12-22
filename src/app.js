@@ -1,9 +1,11 @@
 import StarSky from "./modules/star_sky.module";
-import ChristmasTree from "./modules/christmas_tree.module";
-import SvgBall from "./modules/ball.module";
-import Modal from "./modules/modal.module";
 import Music from "./modules/music.mudule";
 import Snow from "./modules/snow.module";
+import FollowWhiteRabbitModule from "./modules/follow_white_rabbit.module";
+
+import ChristmasTree from "./modules/christmas_tree.module";
+import SvgBall from "./modules/ball.module";
+
 import "./styles.css";
 import "./style.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -16,6 +18,7 @@ let modules = {
   starSky: new StarSky(".sky", 20, 200),
   snow: new Snow(),
   music: new Music(),
+  fwr: new FollowWhiteRabbitModule(),
 };
 
 window.onload = () => {
@@ -33,11 +36,15 @@ window.onresize = () => {
 document.querySelector("body").addEventListener("click", (event) => {
   const { target } = event;
   if (target.dataset.btn === "close_modal") {
-    //event.target.closest(".sct-card").remove();
+    const svgBall = document.querySelector(
+      `svg-ball[data-module="${target.dataset.module}"]`
+    );
+    svgBall.toggleClass("selected");
+    svgBall.parentElement.classList.toggle("ball-shadow");
     modules[target.dataset.module].toggle();
   }
-  console.dir(event.target);
-  console.log(event.target.closest(".sct-card"));
+  // console.dir(event.target);
+  // console.log(event.target.closest(".sct-card"));
 });
 
 document.querySelector(".tree").addEventListener("click", (event) => {
@@ -46,13 +53,13 @@ document.querySelector(".tree").addEventListener("click", (event) => {
   const { parentElement } = target;
   const { module: moduleName } = target.dataset;
 
-  console.dir(modules[moduleName]);
+  //console.dir(modules[moduleName]);
 
   if (target.localName === "svg-ball") {
     target.toggleClass("selected");
     parentElement.classList.toggle("ball-shadow");
 
-    console.dir(modules[moduleName]);
+    //console.dir(modules[moduleName]);
 
     modules[moduleName].toggle();
 

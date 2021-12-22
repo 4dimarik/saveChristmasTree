@@ -7,13 +7,12 @@ export default class Music extends Modal {
     this.#player = `
     <iframe
       frameborder="0"
-      style="border: none; width: 100%; height: 450px"
+      style="border:none;width:100%;height:450px;"
       width="100%"
       height="450"
-      src="https://music.yandex.ru/iframe/#album/12415851"
-      >Слушайте <a href="https://music.yandex.ru/album/12415851">канун нового года</a> —
-      <a href="https://music.yandex.ru/artist/171">сборник</a> на Яндекс.Музыке</iframe
-    >`;
+      src="https://music.yandex.ru/iframe/#playlist/ya.playlist/1052">
+        Слушайте <a href='https://music.yandex.ru/users/ya.playlist/playlists/1052'>Песни на Нoвый год</a> — <a href='https://music.yandex.ru/users/ya.playlist'>Музыкальные подборки</a> на Яндекс.Музыке
+      </iframe>`;
     this.create();
     this.addContent();
   }
@@ -21,7 +20,7 @@ export default class Music extends Modal {
   addContent() {
     this.modal
       .querySelector(".sct-card__content")
-      .insertAdjacentHTML("beforebegin", this.#player);
+      .insertAdjacentHTML("afterbegin", this.#player);
     this.modal.querySelector("*[data-btn='close_modal']").dataset.module =
       "music";
   }
