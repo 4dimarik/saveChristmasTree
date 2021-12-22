@@ -85,55 +85,10 @@ a {
     fill: red;
     cursor: pointer;
 }
-/*.tree .cls-34 {*/
-/*    fill: #000;*/
-/*}*/
-
-.ball {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: transparent;
-    position: absolute;
-    display: block;
-}
-.ball-shadow {
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.75);
-    -moz-box-shadow:    0px 0px 20px 0px rgba(255, 255, 255, 0.75);
-    box-shadow:         0px 0px 20px 0px rgba(255, 255, 255, 0.75);
-}
-.ball-tree-light {
-    top: 25%;
-    left: 30%;
-}
-.ball-snow {
-    top: 30%;
-    left: 60%;
-}
-.ball-swr {
-    top: 40%;
-    left: 40%;
-}
-.ball-music {
-    top: 55%;
-    left: 25%;
-}
-.ball-timer {
-    top: 60%;
-    left: 55%;
-}
-
-
-
 
 .snow {
-
     z-index: 25;
     background-color: transparent;
-    /*top: 0;*/
-    /*left: -100vw;*/
-    /*position: absolute;*/
-
 }
 .modal_area {
     z-index: 31;
@@ -145,8 +100,6 @@ a {
     height: 100vh;
 }
 .modal_area-lg {
-    /*width: 25%;*/
-    /*bottom: 10%;*/
     left: 5%;
 }
 
@@ -155,10 +108,6 @@ a {
         width: 55vw;
         bottom: 8%;
         right: 10%;
-    }
-    .ball{
-        width: 20px;
-        height: 20px;
     }
     .sct-card {
         padding: 0;
