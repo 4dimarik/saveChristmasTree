@@ -1,4 +1,5 @@
 import Modal from "./modal.module";
+import "./music.css";
 
 export default class Music extends Modal {
   #player;
@@ -18,6 +19,7 @@ export default class Music extends Modal {
   }
 
   addContent() {
+    this.modal.classList.add("modal_area__music");
     this.modal
       .querySelector(".sct-card__content")
       .insertAdjacentHTML("afterbegin", this.#player);
