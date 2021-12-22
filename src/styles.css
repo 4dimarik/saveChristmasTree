@@ -81,6 +81,14 @@ a {
     position: absolute;
 }
 
+.tree .cls-40:hover {
+    fill: red;
+    cursor: pointer;
+}
+/*.tree .cls-34 {*/
+/*    fill: #000;*/
+/*}*/
+
 .ball {
     width: 30px;
     height: 30px;
@@ -196,8 +204,9 @@ a {
 /*XX-Large devices (larger desktops, 1400px and up)*/
 @media (min-width: 1400px) {
     .tree {
-        width: 20vw;
+        width: 25vw;
         bottom: 10%;
-        right: 25%;
+        right: 20%;
     }
 }
+

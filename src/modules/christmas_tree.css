@@ -1,0 +1,31 @@
+
+.cls-34 {
+    transition-property: opacity;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+    animation: light 5s infinite;
+}
+.cls-34:nth-child(odd) {
+    animation-delay: 1s;
+}
+.cls-34:nth-child(even) {
+    animation-delay: 2s;
+}
+.light-off .cls-34 {
+    animation: none;
+}
+.tree .selected {
+    fill: red;
+}
+
+@keyframes light {
+    5% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

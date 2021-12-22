@@ -59,12 +59,14 @@ export default class Modal {
 
     closeBtn.el.addEventListener("click", (event) => {
       const { target } = event;
-      this.closeEvent();
+      this.closeEvent(moduleName);
     });
 
     this.footer.el.append(closeBtn.el);
   }
-  closeEvent() {
-    console.log("close modal");
+  closeEvent(moduleName) {
+    const ball = document.querySelector(`.tree *[data-module="${moduleName}"]`);
+    ball.classList.toggle("selected");
+    this.toggle();
   }
 }
