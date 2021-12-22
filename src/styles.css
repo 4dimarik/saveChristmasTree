@@ -122,23 +122,27 @@ a {
 }
 
 /*Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {  }
+@media (min-width: 576px) {
+    .tree {
+        width: 60vw;
+        bottom: 8%;
+        right: 1%;
+    }
+}
 
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
     .tree {
-        width: 50vw;
+        width: 45vw;
         bottom: 8%;
-        right: 1%;
+        right: 6%;
     }
 }
 
 /*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
     .tree {
-        width: 29vw;
-        bottom: 8%;
-        right: 15%;
+
     }
 }
 
