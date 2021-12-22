@@ -97,7 +97,7 @@ a {
     justify-content: center;
     align-items: start;
     padding: 2rem;
-    height: 100vh;
+
 }
 .modal_area-lg {
     left: 5%;
@@ -105,9 +105,10 @@ a {
 
 @media (max-width: 575px) {
     .tree {
-        width: 55vw;
-        bottom: 8%;
-        right: 10%;
+        width: 80vw;
+        height: 50vh;
+        bottom: 0;
+        right: 0;
     }
     .sct-card {
         padding: 0;
@@ -126,9 +127,9 @@ a {
 /*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
     .tree {
-        width: 29vw;
+        width: 50vw;
         bottom: 8%;
-        right: 15%;
+        right: 1%;
     }
 }
 
