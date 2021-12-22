@@ -23,10 +23,5 @@ export default class Music extends ModuleModal {
     this.modal.el.classList.add("modal_area__music");
     this.content.el.insertAdjacentHTML("afterbegin", this.#player);
     this.body.el.append(this.content.el);
-    // this.modal
-    //   .querySelector(".sct-card__content")
-    //   .insertAdjacentHTML("afterbegin", this.#player);
-    // this.modal.querySelector("*[data-btn='close_modal']").dataset.module =
-    //   "music";
   }
 }

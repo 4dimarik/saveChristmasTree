@@ -80,11 +80,7 @@ a {
     z-index: 30;
     position: absolute;
 }
-.tree-lg {
-    width: 18vw;
-    bottom: 10%;
-    right: 25%;
-}
+
 .ball {
     width: 30px;
     height: 30px;
@@ -114,6 +110,10 @@ a {
     top: 55%;
     left: 25%;
 }
+.ball-timer {
+    top: 60%;
+    left: 55%;
+}
 
 
 
@@ -132,7 +132,7 @@ a {
     position: fixed;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     padding: 2rem;
     height: 100vh;
 }
@@ -140,4 +140,64 @@ a {
     /*width: 25%;*/
     /*bottom: 10%;*/
     left: 5%;
+}
+
+@media (max-width: 575px) {
+    .tree {
+        width: 55vw;
+        bottom: 8%;
+        right: 10%;
+    }
+    .ball{
+        width: 20px;
+        height: 20px;
+    }
+    .sct-card {
+        padding: 0;
+    }
+    .modal_area {
+        left: 0;
+        width: 100%;
+        padding: 0;
+        height: 90vh;
+    }
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {  }
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .tree {
+        width: 29vw;
+        bottom: 8%;
+        right: 15%;
+    }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .tree {
+        width: 29vw;
+        bottom: 8%;
+        right: 15%;
+    }
+}
+
+/*X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    .tree {
+        width: 23vw;
+        bottom: 10%;
+        right: 25%;
+    }
+}
+
+/*XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) {
+    .tree {
+        width: 20vw;
+        bottom: 10%;
+        right: 25%;
+    }
 }

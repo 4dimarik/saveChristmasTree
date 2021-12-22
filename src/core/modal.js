@@ -4,7 +4,7 @@ import "./modal.css";
 export default class Modal {
   #blockClassName = "sct-card";
   constructor() {
-    this.modal = new DomElement({ attrs: { className: this.blockClassName } });
+    this.modal = new DomElement({ attrs: { className: this.#blockClassName } });
     this.header = new DomElement({
       attrs: { className: this.getElementClassName("header") },
     });
@@ -59,46 +59,12 @@ export default class Modal {
 
     closeBtn.el.addEventListener("click", (event) => {
       const { target } = event;
-      console.log(target);
-      console.log(modules);
+      this.closeEvent();
     });
 
     this.footer.el.append(closeBtn.el);
   }
+  closeEvent() {
+    console.log("close modal");
+  }
 }
-
-// import "./modal.css";
-//
-// export default class Modal {
-//     #isActive = false;
-//     constructor() {
-//         this.modal = null;
-//     }
-//     create() {
-//         this.modal = document.createElement("div");
-//         this.modal.className = "sct-card";
-//         this.modal.innerHTML = `
-//           <div class="sct-card__header"></div>
-//           <div class="sct-card__body">
-// <!--            <h5 class="sct-card__title">Special title treatment</h5>-->
-// <!--            <p class="sct-card__text">-->
-// <!--              -->
-// <!--            </p>-->
-// <!--            <div class="sct-card__close-btn"> -->
-//                 <div class="sct-card__content"></div>
-//               <a class="fa-lg" style="color: #fff;" href="#!" role="button">
-//                   <i class="far fa-times-circle" data-btn="close_modal" data-module=""></i>
-//               </a>
-//             </div>
-//           </div>
-//           <div class="sct-card__footer"></div>
-//         `;
-//     }
-//     insert() {
-//         document.querySelector(".modal_area").append(this.modal);
-//     }
-//     toggle() {
-//         this.#isActive = !this.#isActive;
-//         this.#isActive ? this.insert(".modal_area") : this.modal.remove();
-//     }
-// }

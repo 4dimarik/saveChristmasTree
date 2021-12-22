@@ -104,7 +104,7 @@ export default class ChristmasTree extends HTMLElement {
     if (on) {
       allCircles.forEach((circle) => {
         const randomColors = new RandomColors(30);
-        circle.style.fill = randomColors.get();
+        circle.style.fill = randomColors.color;
       });
     } else {
       allCircles.forEach((circle) => {

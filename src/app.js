@@ -9,6 +9,7 @@ import SvgBall from "./modules/ball.module";
 import "./styles.css";
 import "./style.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Timer from "./modules/timer.module";
 
 // const snow = new Snow();
 
@@ -19,6 +20,7 @@ let modules = {
   snow: new Snow(),
   music: new Music(),
   fwr: new FollowWhiteRabbitModule(),
+  timer: new Timer(),
 };
 
 window.onload = () => {
