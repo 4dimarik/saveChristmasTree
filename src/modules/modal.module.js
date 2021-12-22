@@ -1,4 +1,4 @@
-import "./modal.css";
+// import "./modal.css";
 
 export default class Modal {
   #isActive = false;
@@ -26,7 +26,8 @@ export default class Modal {
         `;
   }
   insert() {
-    document.querySelector(".modal_area").append(this.modal);
+    console.dir(this.modal.el);
+    document.querySelector(".modal_area").append(this.modal.el);
   }
   toggle() {
     this.#isActive = !this.#isActive;

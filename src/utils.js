@@ -4,12 +4,15 @@ export function random(min, max) {
 
 export class RandomColors {
   constructor(quantity) {
-    this.colors = this.getRandomColorArray(quantity);
+    this._colors = this.getRandomColorArray(quantity);
   }
 
-  get() {
+  get color() {
     const index = Math.floor(Math.random() * this.colors.length);
     return this.colors[index];
+  }
+  get colors() {
+    return this._colors;
   }
   getRGBColor() {
     return Math.floor(Math.random() * 255);

@@ -1,83 +1,179 @@
-import Modal from "./modal.module";
+import ModuleModal from "../core/module.modal";
+import { RandomColors, numeralsWithNouns } from "../utils";
 import "./follow_white_rabbit.css";
+import DomElement from "../core/dom-element";
 
-export default class FollowWhiteRabbitModule extends Modal {
+export default class FollowWhiteRabbitModule extends ModuleModal {
   #SQUARES_NUMBER = 400;
   #COLORS_NUMBER = 50;
 
   constructor() {
     super();
-    this.colors = this.getRandomColorArray();
-    this.create();
-    this.spanCounter = document.querySelector("#counter");
+    this.randomColors = new RandomColors(this.#COLORS_NUMBER); //this.getRandomColorArray();
+    this.boxClassName = "fwr-box";
+    this.miniGame = this.createMiniGame();
+    this.setCloseBtn("fwr");
+    this.setPanelsContent();
     this.addContent();
+    this.build(["header", "body", "footer"]);
   }
-  addContent() {
-    this.modal.querySelector(".sct-card__content").insertAdjacentHTML(
-      "afterbegin",
-      `<div class="sct-card__fwr-panel">
-<p class="sct-card__text">Кликай по полю ниже, что бы найти где спрятался белый кролик</p>
-<button type="button" class="btn" >Старт</button>
-</div>`
-    );
 
-    this.square = document.createElement("div");
-    this.square.classList.add("sct-card__fwr-container");
+  setPanelsContent() {
+    this.panels = {};
+    this.panel = new DomElement({
+      attrs: { className: this.getElementClassName("fwr-panel") },
+    }).el;
+    // start panel
+    this.panels.start = new DomElement({ attrs: {} }).el;
+    this.panels.start.append(
+      new DomElement({
+        tag: "p",
+        attrs: {
+          className: this.getElementClassName("text"),
+          textContent:
+            "Кликай по полю ниже, что бы найти где спрятался белый кролик",
+        },
+      }).el
+    );
+    const startBtn = new DomElement({
+      tag: "button",
+      attrs: {
+        className: "btn btn-start",
+        textContent: "Старт",
+        type: "button",
+      },
+    }).el;
+    startBtn.addEventListener("click", (event) => {
+      this.panel.innerHTML = "";
+      this.panel.append(this.panels.started);
+      this.startMiniGame();
+    });
+    this.panels.start.append(startBtn);
+
+    // started panel
+    this.panels.started = new DomElement({ attrs: {} }).el;
+    const p = new DomElement({
+      tag: "p",
+      attrs: {
+        textContent: "Количество попыток ",
+      },
+    }).el;
+
+    this.fwrCounter = new DomElement({
+      tag: "span",
+      attrs: {
+        id: "fwr_counter",
+        textContent: 0,
+      },
+    }).el;
+
+    p.append(this.fwrCounter);
+    this.panels.started.append(p);
+
+    // end panel
+  }
+
+  addContent() {
+    this.modal.el.classList.add("modal_area__fwr");
+
+    this.panel.append(this.panels.start);
+    this.content.el.append(this.panel);
+
+    this.square = new DomElement({
+      attrs: { className: this.getElementClassName("fwr-container") },
+    }).el;
 
     for (let i = 0; i < this.#SQUARES_NUMBER; i++) {
-      const box = document.createElement("div");
-      box.classList.add("box");
-      box.dataset.id = String(i);
+      const box = new DomElement({
+        attrs: { dataset: { id: String(i) }, className: this.boxClassName },
+      }).el;
       this.square.append(box);
     }
 
-    this.miniGame = this.createMiniGame();
+    this.content.el.append(this.square);
+    this.body.el.append(this.content.el);
+  }
 
+  startMiniGame() {
     this.square.addEventListener("mouseover", (event) => {
       const { target } = event;
-      if ([...target.classList].includes("box")) {
+      if ([...target.classList].includes(this.boxClassName)) {
         this.setColor(target);
       }
     });
+
     this.square.addEventListener("mouseout", (event) => {
       const { target } = event;
-      if ([...target.classList].includes("box")) {
+      if ([...target.classList].includes(this.boxClassName)) {
         this.removeColor(target);
       }
     });
 
-    const boxes = this.square.querySelectorAll("box");
     this.square.addEventListener("click", (event) => {
       const { target } = event;
-      if ([...target.classList].includes("box")) {
-        //let index = Array.from(boxes).indexOf(target);
+      if ([...target.classList].includes(this.boxClassName)) {
         const index = +target.dataset.id;
         console.log(`Click index: ${index}`);
 
         if (!this.miniGame.win) {
           this.miniGame.counter++;
-          this.miniGame.textContent = this.miniGame.counter;
+          this.fwrCounter.textContent = this.miniGame.counter;
           if (this.miniGame.whiteDivIndex === index) {
-            target.classList.add("white-div");
-            this.spanCounter.style.color = "red";
             this.miniGame.win = true;
+            target.classList.add("white-div");
+            //this.fwrCounter.style.color = "red";
+            this.createEndPanel(this.miniGame.counter);
+            this.panel.innerHTML = "";
+            this.panel.append(this.panels.end);
           }
           this.miniGame.lastClickIndex = index;
-        } else {
-          if (this.miniGame.lastClickIndex === index) {
-            event.target.classList.remove("white-div");
-            this.miniGame.counter = 0;
-            this.spanCounter.textContent = 0;
-            this.spanCounter.style.color = "";
-            this.miniGame.win = false;
-          }
         }
       }
     });
-    this.modal.querySelector(".sct-card__content").append(this.square);
   }
+
+  createEndPanel(count) {
+    this.panels.end = new DomElement({ attrs: {} }).el;
+    console.log(this.miniGame);
+    this.panels.end.append(
+      new DomElement({
+        tag: "p",
+        attrs: {
+          className: this.getElementClassName("text"),
+          textContent:
+            "Вы нашли кролика за " +
+            count +
+            " " +
+            numeralsWithNouns(count, ["попытку", "попытки", "попыток"]),
+        },
+      }).el
+    );
+    const restartBtn = new DomElement({
+      tag: "button",
+      attrs: {
+        className: "btn btn-restart",
+        textContent: "Повторить",
+        type: "button",
+      },
+    }).el;
+    restartBtn.addEventListener("click", (event) => {
+      this.panel.innerHTML = "";
+      this.panel.append(this.panels.started);
+      this.miniGame.win = false;
+      this.square.querySelector(".white-div").classList.remove("white-div");
+      // this.miniGame.counter = 0;
+      this.fwrCounter.textContent = "0";
+      // this.fwrCounter.style.color = "";
+      // this.setWhiteDiv();
+      this.miniGame = this.createMiniGame();
+      this.startMiniGame();
+    });
+    this.panels.end.append(restartBtn);
+    return;
+  }
+
   setColor(el) {
-    const color = this.getRandomColor();
+    const color = this.randomColors.color; //this.getRandomColor();
     el.style.backgroundColor = color;
     el.style.boxShadow = `0 0 2px ${color}, 0 0 20px ${color}`;
   }
@@ -87,23 +183,6 @@ export default class FollowWhiteRabbitModule extends Modal {
     el.style.boxShadow = `0 0 2px #000`;
   }
 
-  getRandomColor() {
-    const index = Math.floor(Math.random() * this.colors.length);
-    return this.colors[index];
-  }
-  getRGBColor() {
-    return Math.floor(Math.random() * 255);
-  }
-
-  getRandomColorArray() {
-    const colors = [];
-    for (let i = 0; i < this.#COLORS_NUMBER; i++) {
-      colors[
-        i
-      ] = `rgb(${this.getRGBColor()} ${this.getRGBColor()} ${this.getRGBColor()})`;
-    }
-    return colors;
-  }
   createMiniGame() {
     return {
       whiteDivIndex: this.setWhiteDiv(),
@@ -113,8 +192,8 @@ export default class FollowWhiteRabbitModule extends Modal {
     };
   }
   setWhiteDiv() {
-    const divCount = this.square.querySelectorAll(".box").length;
-    const index = Math.floor(Math.random() * divCount);
+    //const divCount = this.square.querySelectorAll(this.boxClassName).length;
+    const index = Math.floor(Math.random() * this.#SQUARES_NUMBER);
     console.log(`White div index: ${index}`);
     return index;
   }

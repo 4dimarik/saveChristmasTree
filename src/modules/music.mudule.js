@@ -1,7 +1,7 @@
-import Modal from "./modal.module";
+import ModuleModal from "../core/module.modal";
 import "./music.css";
 
-export default class Music extends Modal {
+export default class Music extends ModuleModal {
   #player;
   constructor() {
     super();
@@ -14,16 +14,19 @@ export default class Music extends Modal {
       src="https://music.yandex.ru/iframe/#playlist/ya.playlist/1052">
         Слушайте <a href='https://music.yandex.ru/users/ya.playlist/playlists/1052'>Песни на Нoвый год</a> — <a href='https://music.yandex.ru/users/ya.playlist'>Музыкальные подборки</a> на Яндекс.Музыке
       </iframe>`;
-    this.create();
+    this.setCloseBtn("music");
     this.addContent();
+    this.build(["header", "body", "footer"]);
   }
 
   addContent() {
-    this.modal.classList.add("modal_area__music");
-    this.modal
-      .querySelector(".sct-card__content")
-      .insertAdjacentHTML("afterbegin", this.#player);
-    this.modal.querySelector("*[data-btn='close_modal']").dataset.module =
-      "music";
+    this.modal.el.classList.add("modal_area__music");
+    this.content.el.insertAdjacentHTML("afterbegin", this.#player);
+    this.body.el.append(this.content.el);
+    // this.modal
+    //   .querySelector(".sct-card__content")
+    //   .insertAdjacentHTML("afterbegin", this.#player);
+    // this.modal.querySelector("*[data-btn='close_modal']").dataset.module =
+    //   "music";
   }
 }

@@ -41,6 +41,7 @@ document.querySelector("body").addEventListener("click", (event) => {
     );
     svgBall.toggleClass("selected");
     svgBall.parentElement.classList.toggle("ball-shadow");
+    console.dir(modules[target.dataset.module]);
     modules[target.dataset.module].toggle();
   }
   // console.dir(event.target);
