@@ -1,9 +1,4 @@
-# 
+# Новогодний челлендж от Result.School
 
-<a href='https://www.freepik.com/vectors/background'>Background vector created by mariadetarosarinda - www.freepik.com</a>
 
-<a href='https://www.freepik.com/vectors/christmas'>Christmas vector created by freepik - www.freepik.com</a>
-
-<a href='https://www.freepik.com/vectors/background'>Background vector created by kjpargeter - www.freepik.com</a>
-
-<a href='https://www.freepik.com/vectors/christmas'>Christmas vector created by freepik - www.freepik.com</a>
+[Запуск](https://4dimarik.github.io/saveChristmasTree/dist/)
