@@ -97,10 +97,11 @@ a {
     justify-content: center;
     align-items: start;
     padding: 2rem;
-
-}
-.modal_area-lg {
     left: 5%;
+}
+
+.modal_area__timer {
+    height: 300px;
 }
 
 @media (max-width: 575px) {
@@ -112,12 +113,13 @@ a {
     }
     .sct-card {
         padding: 0;
+        height: 90%;
     }
     .modal_area {
         left: 0;
         width: 100%;
+        height: 100%;
         padding: 0;
-        height: 90vh;
     }
 }
 
@@ -128,6 +130,10 @@ a {
         bottom: 8%;
         right: 1%;
     }
+    .modal_area__music{
+        width: 100%;
+        height: 70vh;
+    }
 }
 
 /*Medium devices (tablets, 768px and up)*/
@@ -136,6 +142,10 @@ a {
         width: 45vw;
         bottom: 8%;
         right: 6%;
+    }
+    .modal_area__music{
+        width: 450px;
+        height: 70vh;
     }
 }
 

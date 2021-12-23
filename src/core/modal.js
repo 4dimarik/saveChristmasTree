@@ -66,6 +66,8 @@ export default class Modal {
   }
   closeEvent(moduleName) {
     const ball = document.querySelector(`.tree *[data-module="${moduleName}"]`);
+    console.log(moduleName);
+    console.log(ball);
     ball.classList.toggle("selected");
     this.toggle();
   }

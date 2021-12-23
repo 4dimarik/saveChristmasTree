@@ -8,7 +8,7 @@ export default class Music extends ModuleModal {
     this.#player = `
     <iframe
       frameborder="0"
-      style="border:none;width:100%;height:450px;"
+      style="border:none;"
       width="100%"
       height="100%"
       src="https://music.yandex.ru/iframe/#playlist/ya.playlist/1052">

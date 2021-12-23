@@ -26,17 +26,3 @@ window.onload = () => {
 window.onresize = () => {
   modules.starSky.create().insert();
 };
-
-document.querySelector(".tree").addEventListener("click", (event) => {
-  event.preventDefault();
-  const { target } = event;
-  const { parentElement } = target;
-  const { module: moduleName } = target.dataset;
-
-  if (target.localName === "svg-ball") {
-    target.toggleClass("selected");
-    parentElement.classList.toggle("ball-shadow");
-
-    modules[moduleName].toggle();
-  }
-});
