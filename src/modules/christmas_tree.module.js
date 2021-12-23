@@ -18,7 +18,6 @@ export default class ChristmasTree {
       }
     });
   }
-
   toggle() {
     this.lightIsOn = !this.lightIsOn;
     this.changeCircleColor();
