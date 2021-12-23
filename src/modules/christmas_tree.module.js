@@ -12,8 +12,10 @@ export default class ChristmasTree {
     this.tree.addEventListener("click", (event) => {
       const { target } = event;
       const { module: moduleName } = target.dataset;
-      target.classList.toggle("selected");
-      this.modules[moduleName].toggle();
+      if (moduleName) {
+        target.classList.toggle("selected");
+        this.modules[moduleName].toggle();
+      }
     });
   }
 
